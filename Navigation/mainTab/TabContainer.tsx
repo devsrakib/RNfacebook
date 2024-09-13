@@ -6,23 +6,21 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import Friends from "../Friends";
-import Menu from "../Menu";
-import Notification from "../Notification";
-import Profile from "../Profile";
-import Feeds from "../Feeds";
 // import HomeInTab from "../HomeInTab";
+import Friends from "../top_tabs/Friends";
+import Profile from "../top_tabs/Profile";
+import Feeds from "../top_tabs/Feeds";
+import Menu from "../top_tabs/Menu";
+import Notification from "../top_tabs/Notification";
 import {
   HomeSVG,
-  HomeBlue,
-  Plus,
-  UserGroup,
-  RoundedUser,
   MenuBaseline,
-  RecentNews,
   NotificationIcon,
-} from "../../../allSVG/AllSvg";
-import TabHome from "../TabHome";
+  RecentNews,
+  RoundedUser,
+  UserGroup,
+} from "../../allSVG/AllSvg";
+import TabHome from "../top_tabs/TabHome";
 
 const Tab = createMaterialTopTabNavigator();
 const TabContainer = () => {

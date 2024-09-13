@@ -8,24 +8,18 @@ import { apiUrl } from "../../components/userInfo/UserInfo";
 import { Divider } from "react-native-paper";
 import { Comment, Like, Share } from "../../allSVG/AllSvg";
 import { useNavigation } from "@react-navigation/native";
+import ReactionPopupModal from "../../components/home/ReactionPopupModal";
 
 const TabHome = () => {
   const [theme, setTheme] = useState("");
+  const [isReaction, setIsReaction] = useState(false);
   const navigation: any = useNavigation();
-  useEffect(() => {
-    const colorScheme = Appearance.getColorScheme();
-    if (colorScheme === "dark") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  }, []);
 
   return (
     <View
       style={{
         flex: 1,
-        backgroundColor: theme === " light" ? "#fff" : "#000",
+        backgroundColor: "#fff",
       }}
     >
       <ScrollView>
@@ -193,6 +187,7 @@ const TabHome = () => {
                 }}
               >
                 <TouchableOpacity
+                  onPress={() => setIsReaction(!isReaction)}
                   style={{ flexDirection: "row", alignItems: "center" }}
                 >
                   <Like />
@@ -205,6 +200,7 @@ const TabHome = () => {
                     Like
                   </Text>
                 </TouchableOpacity>
+
                 <TouchableOpacity
                   style={{ flexDirection: "row", alignItems: "center" }}
                 >
@@ -239,6 +235,10 @@ const TabHome = () => {
           );
         })}
       </ScrollView>
+      <ReactionPopupModal
+        isReaction={isReaction}
+        setIsReaction={setIsReaction}
+      />
     </View>
   );
 };

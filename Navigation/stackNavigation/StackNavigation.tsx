@@ -1,8 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import UserProfile from "../../../components/Profile/UserProfile";
-import PostImageViewPage from "../../../components/postImageViewPage/PostImageViewPage";
-import Home from "../../home/Home";
-import ViewStore from "../../../components/storyItem/StoryViewPage/ViewStore";
+import Home from "../../screen/home/Home";
+import UserProfile from "../../components/Profile/UserProfile";
+import PostImageViewPage from "../../components/postImageViewPage/PostImageViewPage";
+import ViewStore from "../../components/storyItem/StoryViewPage/ViewStore";
 
 export type RootStackParamsList = {
   Home: undefined;
