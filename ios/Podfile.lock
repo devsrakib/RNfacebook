@@ -459,7 +459,11 @@ PODS:
     - React-Core
   - RNSVG (13.9.0):
     - React-Core
+  - simdjson (3.1.0-wmelon1)
   - SocketRocket (0.6.1)
+  - WatermelonDB (0.27.1):
+    - React
+    - simdjson
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -515,6 +519,8 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - "simdjson (from `/Users/devs.rakib/Desktop/devs.rakib/RNfacebook/node_modules/@nozbe/simdjson`)"
+  - "WatermelonDB (from `../node_modules/@nozbe/watermelondb`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -625,6 +631,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  simdjson:
+    :path: "/Users/devs.rakib/Desktop/devs.rakib/RNfacebook/node_modules/@nozbe/simdjson"
+  WatermelonDB:
+    :path: "../node_modules/@nozbe/watermelondb"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -681,9 +691,11 @@ SPEC CHECKSUMS:
   ReactCommon: dd03c17275c200496f346af93a7b94c53f3093a4
   RNGestureHandler: c0d04458598fcb26052494ae23dda8f8f5162b13
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
+  simdjson: e6bfae9ce4bcdc80452d388d593816f1ca2106f3
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  WatermelonDB: 842d22ba555425aa9f3ce551239a001200c539bc
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
 
-PODFILE CHECKSUM: 203835a62e4ed404555cff8287be5d6dd39cfaa3
+PODFILE CHECKSUM: e710a34f494faefd964b3959381b46beb1fef363
 
 COCOAPODS: 1.15.2

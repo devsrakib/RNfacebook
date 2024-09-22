@@ -27,6 +27,23 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "@morrowdigital/watermelondb-expo-plugin"
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 33,
+            "targetSdkVersion": 33,
+            "minSdkVersion": 23,
+            "buildToolsVersion": "33.0.0",
+            "kotlinVersion": "1.6.20"
+          }
+        }
+      ]
+    ]
   }
 }

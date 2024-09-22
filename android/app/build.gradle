@@ -76,7 +76,12 @@ def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInRelea
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
-android {
+
+          android {
+            packagingOptions {
+               pickFirst '**/libc++_shared.so' 
+            }
+          
     ndkVersion rootProject.ext.ndkVersion
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -134,7 +139,10 @@ android {
     }
 }
 
-dependencies {
+
+          dependencies {
+            implementation project(':watermelondb-jsi')
+          
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 

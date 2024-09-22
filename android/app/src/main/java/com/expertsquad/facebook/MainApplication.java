@@ -18,10 +18,21 @@ import expo.modules.ReactNativeHostWrapper;
 
 import java.util.List;
 
+          import com.nozbe.watermelondb.WatermelonDBPackage;
+          import com.nozbe.watermelondb.jsi.WatermelonDBJSIPackage;
+          import com.facebook.react.bridge.JSIModulePackage;
+        
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
-    new ReactNativeHostWrapper(this, new DefaultReactNativeHost(this) {
+    
+          new ReactNativeHostWrapper(this, new DefaultReactNativeHost(this) {
+            @Override
+             protected JSIModulePackage getJSIModulePackage() {
+               return new WatermelonDBJSIPackage(); 
+             }
+          
       @Override
       public boolean getUseDeveloperSupport() {
         return BuildConfig.DEBUG;
