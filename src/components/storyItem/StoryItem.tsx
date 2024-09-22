@@ -6,19 +6,10 @@ import { useNavigation } from "@react-navigation/native";
 
 const StoreyItem = () => {
   const navigation: any = useNavigation();
-  const [theme, setTheme] = useState("");
-  useEffect(() => {
-    const colorScheme = Appearance.getColorScheme();
-    if (colorScheme === "dark") {
-      setTheme("dark");
-    } else {
-      setTheme("light");
-    }
-  }, []);
   return (
     <View
       style={{
-        backgroundColor: theme === " light" ? "#fff" : "#242526",
+        backgroundColor: "#fff",
         flex: 1,
         flexDirection: "row",
       }}
@@ -52,10 +43,11 @@ const StoreyItem = () => {
               <Image
                 style={{ width: 36, height: 36, borderRadius: 50 }}
                 source={{ uri: item?.profile }}
+                resizeMode="cover"
               />
             </TouchableOpacity>
             <Image
-              resizeMode="cover"
+              resizeMode="contain"
               style={StoryStyle.imgContainer}
               source={{ uri: item?.profile }}
             />

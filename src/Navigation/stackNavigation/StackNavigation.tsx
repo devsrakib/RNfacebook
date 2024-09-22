@@ -36,7 +36,12 @@ const StackNavigation = () => {
         component={PostImageViewPage}
       />
       <Stack.Screen
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          // presentation: "formSheet",
+          // gestureEnabled: true,
+          animation: "slide_from_bottom",
+        }}
         name="ViewStore"
         component={ViewStore}
       />

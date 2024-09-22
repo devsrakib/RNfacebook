@@ -4,41 +4,82 @@ import {
   TouchableOpacity,
   ImageBackground,
   TextInput,
+  StyleSheet,
+  ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-import { BackArrow } from "../../../allSVG/AllSvg";
+import { AntDesign, FontAwesome5, MaterialIcons } from "expo-vector-icons";
+import { Colors } from "../../../constants/Colors";
 
 const ViewStore = (props) => {
   const navigation = useNavigation();
   const item = props?.route?.params;
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#242526" }}>
-      <ImageBackground
-        resizeMode="contain"
-        style={{ flex: 1, backgroundColor: "#242526" }}
-        source={{ uri: item?.profile }}
-      >
-        <View
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <ImageBackground
+          resizeMode="stretch"
           style={{
-            height: 50,
-            width: "90%",
-            alignSelf: "center",
-            borderRadius: 50,
-            borderColor: "#797979",
-            backgroundColor: "#3F3F3F",
-            position: "absolute",
-            bottom: 20,
-            justifyContent: "center",
-            paddingHorizontal: 20,
+            flex: 1,
           }}
+          source={{ uri: item?.profile }}
         >
-          <TextInput placeholderTextColor={"#fff"} placeholder="Comment" />
-        </View>
-      </ImageBackground>
+          <View style={styles.inputAndEmojiCon}>
+            <View style={styles.inputContainer}>
+              <FontAwesome5
+                name="facebook-messenger"
+                size={24}
+                color={Colors.white}
+              />
+              <TextInput
+                style={styles.input}
+                placeholderTextColor={"#fff"}
+                placeholder="Comment"
+              />
+            </View>
+            <View style={styles.emojiCon}>
+              <MaterialIcons name="favorite" size={38} color="red" />
+              <AntDesign name="like1" size={38} color="lightblue" />
+              <AntDesign name="smile-circle" size={35} color="yellow" />
+            </View>
+          </View>
+        </ImageBackground>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
 
 export default ViewStore;
+const styles = StyleSheet.create({
+  inputContainer: {
+    height: 50,
+    flex: 1,
+    borderRadius: 50,
+    borderColor: "#797979",
+    backgroundColor: "#3F3F3F",
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  input: {
+    flex: 1,
+    height: "100%",
+  },
+  inputAndEmojiCon: {
+    marginTop: "auto",
+    marginBottom: 20,
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    gap: 10,
+  },
+  emojiCon: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+});

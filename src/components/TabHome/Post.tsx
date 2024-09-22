@@ -1,8 +1,13 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Divider } from "react-native-paper";
-import { AntDesign, FontAwesome, FontAwesome5 } from "expo-vector-icons";
+import {
+  AntDesign,
+  Entypo,
+  FontAwesome,
+  FontAwesome5,
+} from "expo-vector-icons";
 import { Colors } from "../../constants/Colors";
 
 const Post = ({ item, isReaction, setIsReaction }: any) => {
@@ -44,30 +49,14 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
               width: "90%",
             }}
           >
-            <Text style={{ color: "#ffff" }}>{item?.name}</Text>
-            <View
-              style={{
-                flexDirection: "row",
-              }}
-            >
-              <Text
-                style={{
-                  marginLeft: 10,
-                  fontSize: 18,
-                  color: "#ffff",
-                }}
-              >
-                ...
-              </Text>
-              <Text
-                style={{
-                  marginLeft: 10,
-                  fontSize: 18,
-                  color: "#000",
-                }}
-              >
-                X
-              </Text>
+            <Text style={{ color: "#000" }}>{item?.name}</Text>
+            <View style={styles.threeDotMenu}>
+              <TouchableOpacity>
+                <Entypo name="dots-three-horizontal" size={24} color="black" />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <AntDesign name="close" size={24} color="black" />
+              </TouchableOpacity>
             </View>
           </View>
           <Text style={{ color: "#000" }}>days</Text>
@@ -169,3 +158,10 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
 };
 
 export default Post;
+
+const styles = StyleSheet.create({
+  threeDotMenu: {
+    gap: 10,
+    flexDirection: "row",
+  },
+});

@@ -5,4 +5,5 @@ export const Radius = {
   regular: 10,
   xl: 14,
   xxl: 18,
+  circle: 50,
 };
