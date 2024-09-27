@@ -11,19 +11,19 @@ const Notification = () => {
       title: "New",
       data: [
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
         },
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
         },
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
@@ -34,19 +34,19 @@ const Notification = () => {
       title: "Earlier",
       data: [
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
         },
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
         },
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
@@ -57,19 +57,19 @@ const Notification = () => {
       title: "Old",
       data: [
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
         },
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",
         },
         {
-          image: require("../../../assets/shahin.jpg"),
+          image: require("../../../assets/shahin.jpeg"),
           name: "Rakibul islam",
           time: new Date().toLocaleDateString(),
           desc: "askdfj;aksdjfiejewlekjfisdjflekfjladskfjiejlasdkfjiejflsdkf",

@@ -59,6 +59,7 @@ const StoreyItem = () => {
                 bottom: 20,
                 left: 20,
                 width: 80,
+                fontWeight: "bold",
               }}
             >
               {item?.name}

@@ -9,14 +9,18 @@ import {
   FontAwesome5,
 } from "expo-vector-icons";
 import { Colors } from "../../constants/Colors";
+import Animated from "react-native-reanimated";
 
 const Post = ({ item, isReaction, setIsReaction }: any) => {
   const navigation: any = useNavigation();
+  console.log(item);
+
   return (
     <View
       style={{
         backgroundColor: "#fff",
         marginBottom: 10,
+        // opacity: 0.5,
       }}
     >
       <View
@@ -31,7 +35,7 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
         <TouchableOpacity
           onPress={() => navigation.navigate("Profile", { ...item })}
         >
-          <Image
+          <Animated.Image
             style={{
               width: 40,
               height: 40,
@@ -77,7 +81,8 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
             navigation.navigate("PostImageViewPage", { ...item });
           }}
         >
-          <Image
+          <Animated.Image
+            sharedTransitionTag={`${item?.id}`}
             style={{ width: "100%", height: 300 }}
             source={{ uri: item?.profile }}
           />

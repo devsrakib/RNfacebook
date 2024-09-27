@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: Radius.circle,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000000",
+    shadowColor: Colors.black,
     elevation: 15,
   },
 });

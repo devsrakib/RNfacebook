@@ -32,7 +32,7 @@ const TabHome = () => {
       <ScrollView>
         <View style={[styles.searchContainer, { backgroundColor: "#fff" }]}>
           <Image
-            source={require("../../../assets/shahin.jpg")}
+            source={require("../../../assets/shahin.jpeg")}
             style={styles.profile}
           />
           <TouchableOpacity

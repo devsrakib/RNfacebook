@@ -17,7 +17,9 @@ export type RootStackParamsList = {
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 const StackNavigation = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{ gestureEnabled: true, gestureDirection: "horizontal" }}
+    >
       <Stack.Screen
         options={{
           headerShown: false,

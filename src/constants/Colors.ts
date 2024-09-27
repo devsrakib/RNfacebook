@@ -3,7 +3,7 @@ export const Colors = {
   gray: "#797979",
   blue_button: "rgb(59,146,238)",
   notification: "rgba(59,146,238, 0.2)",
-  black: "#0000",
+  black: "#000000",
   white: "#ffffff",
   lightGreen: "#90EE90",
   border: "#e6e6e6",

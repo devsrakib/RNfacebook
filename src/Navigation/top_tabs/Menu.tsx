@@ -1,18 +1,20 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import React from "react";
 import { Colors } from "../../constants/Colors";
 import Header from "../../components/menu/Header";
-import Shortcuts from "../../components/menu/Shortcuts";
 import { Fonts } from "../../constants/Fonts";
+import ShortcutsGroups from "../../components/menu/ShortcutsGroups";
+import ShortcutsRouter from "../../components/menu/ShortcutsRouter";
 
 const Menu = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* header */}
       <Header />
       <Text style={styles.text}>Your shortcuts</Text>
-      <Shortcuts />
-    </View>
+      <ShortcutsGroups />
+      <ShortcutsRouter />
+    </ScrollView>
   );
 };
 
