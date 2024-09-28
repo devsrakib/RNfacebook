@@ -1,136 +1,74 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { AntDesign, Entypo, MaterialIcons } from "expo-vector-icons";
+import React from "react";
+import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
+import Animated, { FadeInDown, ZoomIn } from "react-native-reanimated";
 import Modal from "react-native-modal";
-import * as DropdownMenu from "zeego/dropdown-menu";
+import { Colors } from "../../constants/Colors";
 
-const ReactionPopupModal = ({ isReaction, setIsReaction }) => {
+const reactions = [
+  { label: "Like", emoji: <AntDesign name="like2" size={24} color="black" /> },
+  {
+    label: "Love",
+    emoji: <MaterialIcons name="favorite" size={24} color="black" />,
+  },
+  {
+    label: "Haha",
+    emoji: <MaterialIcons name="emoji-emotions" size={24} color="black" />,
+  },
+  {
+    label: "Wow",
+    emoji: <Entypo name="emoji-neutral" size={24} color="black" />,
+  },
+  { label: "Sad", emoji: <Entypo name="emoji-sad" size={24} color="black" /> },
+  {
+    label: "Angry",
+    emoji: <Entypo name="emoji-neutral" size={24} color="black" />,
+  },
+];
+
+const ReactionModal = ({ visible, onClose, onSelect }) => {
   return (
     <Modal
-      animationType="fade"
-      // transparent={true}
-      visible={isReaction}
-      onBackdropPress={() => setIsReaction(false)}
+      visible={visible}
+      onBackdropPress={() => onClose()}
+      backdropOpacity={0.0}
     >
-      <View style={styles.modalOverlay}>
-        <View style={styles.reactionContainer}>
-          {/* Reaction Icons */}
-          <TouchableOpacity style={styles.reactionItem}>
-            <Text style={styles.emoji}>❤️</Text>
-            <Text style={styles.reactionText}>Love</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.reactionItem}>
-            <Text style={styles.emoji}>😆</Text>
-            <Text style={styles.reactionText}>Haha</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.reactionItem}>
-            <Text style={styles.emoji}>😢</Text>
-            <Text style={styles.reactionText}>Sad</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.reactionItem}>
-            <Text style={styles.emoji}>😡</Text>
-            <Text style={styles.reactionText}>Angry</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.reactionItem}>
-            <Text style={styles.emoji}>😮</Text>
-            <Text style={styles.reactionText}>Wow</Text>
-          </TouchableOpacity>
-
-          {/* Close Button */}
+      <Animated.View style={styles.modalContainer}>
+        {reactions?.map((reaction) => (
           <TouchableOpacity
-            style={styles.closeButton}
-            onPress={() => setIsReaction(false)}
+            key={reaction.label}
+            style={styles.reactionButton}
+            onPress={() => {
+              onSelect(reaction.label);
+              onClose();
+            }}
           >
-            <Text style={styles.closeButtonText}>Close</Text>
+            {reaction?.emoji}
           </TouchableOpacity>
-        </View>
-      </View>
+        ))}
+      </Animated.View>
     </Modal>
-    // <DropdownMenu.Root>
-    //   <DropdownMenu.Trigger>
-    //     <Button title="hello" />
-    //   </DropdownMenu.Trigger>
-
-    //   <DropdownMenu.Content>
-    //     <DropdownMenu.Label />
-    //     <DropdownMenu.Item>
-    //       <DropdownMenu.ItemTitle />
-    //     </DropdownMenu.Item>
-
-    //     <DropdownMenu.Group>
-    //       <DropdownMenu.Item />
-    //     </DropdownMenu.Group>
-
-    //     <DropdownMenu.CheckboxItem>
-    //       <DropdownMenu.ItemIndicator />
-    //     </DropdownMenu.CheckboxItem>
-
-    //     <DropdownMenu.Sub>
-    //       <DropdownMenu.SubTrigger />
-    //       <DropdownMenu.SubContent />
-    //     </DropdownMenu.Sub>
-
-    //     <DropdownMenu.Separator />
-    //     <DropdownMenu.Arrow />
-    //   </DropdownMenu.Content>
-    // </DropdownMenu.Root>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  modalContainer: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    padding: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    elevation: 5,
+    backdropColor: Colors.white,
   },
   reactionButton: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    backgroundColor: "#4267B2", // Facebook-like blue color
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    bottom: 30,
-    right: 30,
+    marginHorizontal: 10,
   },
-  modalOverlay: {
-    flex: 1,
-    justifyContent: "flex-start",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", // Semi-transparent background
-  },
-  reactionContainer: {
-    backgroundColor: "white",
-    padding: 10,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingBottom: 20,
-  },
-  reactionItem: {
-    alignItems: "center",
-  },
-  emoji: {
-    fontSize: 30,
-  },
-  reactionText: {
-    marginTop: 5,
-    fontSize: 12,
-    color: "#555",
-  },
-  closeButton: {
-    padding: 15,
-    alignItems: "center",
-    backgroundColor: "#f0f0f0",
-    marginTop: 10,
-    borderRadius: 10,
-    alignSelf: "center",
-  },
-  closeButtonText: {
-    color: "#333",
-    fontSize: 16,
+  reactionImage: {
+    width: 50,
+    height: 50,
   },
 });
 
-export default ReactionPopupModal;
+export default ReactionModal;

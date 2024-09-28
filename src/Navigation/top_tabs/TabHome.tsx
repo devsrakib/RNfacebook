@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import {
@@ -17,9 +17,11 @@ import ReactionPopupModal from "../../components/home/ReactionPopupModal";
 import { MaterialCommunityIcons } from "expo-vector-icons";
 import { Colors } from "../../constants/Colors";
 import Post from "../../components/TabHome/Post";
+import ReactionModal from "../../components/home/ReactionPopupModal";
 
 const TabHome = () => {
   const [isReaction, setIsReaction] = useState(false);
+
   const navigation: any = useNavigation();
 
   return (
@@ -69,10 +71,6 @@ const TabHome = () => {
           );
         })}
       </ScrollView>
-      <ReactionPopupModal
-        isReaction={isReaction}
-        setIsReaction={setIsReaction}
-      />
     </View>
   );
 };

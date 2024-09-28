@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import React from "react";
+import React, { memo, useCallback, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Divider } from "react-native-paper";
 import {
@@ -10,10 +10,20 @@ import {
 } from "expo-vector-icons";
 import { Colors } from "../../constants/Colors";
 import Animated from "react-native-reanimated";
+import ReactionModal from "../home/ReactionPopupModal";
 
-const Post = ({ item, isReaction, setIsReaction }: any) => {
+const Post = ({ item }: any) => {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [reaction, setReaction] = useState("");
   const navigation: any = useNavigation();
   console.log(item);
+
+  const handleOpenModal = useCallback(() => setModalVisible(true), []);
+  const handleCloseModal = () => setModalVisible(false);
+  const handleSelectReaction = (selectedReaction) => {
+    setReaction(selectedReaction);
+    // Handle the reaction (e.g., update state or send to a server)
+  };
 
   return (
     <View
@@ -82,7 +92,7 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
           }}
         >
           <Animated.Image
-            // sharedTransitionTag={`${item?.id}`}
+            sharedTransitionTag={`${item?.id}`}
             style={{ width: "100%", height: 300 }}
             source={{ uri: item?.profile }}
           />
@@ -114,7 +124,8 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
         }}
       >
         <TouchableOpacity
-          onPress={() => setIsReaction(!isReaction)}
+          onLongPress={() => handleOpenModal()}
+          onPress={() => console.log("clicked")}
           style={{ flexDirection: "row", alignItems: "center" }}
         >
           <AntDesign name="like2" size={24} color={Colors.blue} />
@@ -157,12 +168,19 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
             Share
           </Text>
         </TouchableOpacity>
+        <View style={{ position: "absolute", bottom: 0 }}>
+          <ReactionModal
+            visible={modalVisible}
+            onClose={handleCloseModal}
+            onSelect={handleSelectReaction}
+          />
+        </View>
       </View>
     </View>
   );
 };
 
-export default Post;
+export default memo(Post);
 
 const styles = StyleSheet.create({
   threeDotMenu: {

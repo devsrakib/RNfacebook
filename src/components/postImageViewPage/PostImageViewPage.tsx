@@ -22,6 +22,8 @@ import Animated, {
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import AnimatedText from "../global/AnitedText";
+import { Colors } from "../../constants/Colors";
+import { LinearGradient } from "expo-linear-gradient";
 
 const PostImageViewPage = (props: any) => {
   const items = props?.route?.params; // Assuming 'items' is an array of posts
@@ -34,6 +36,7 @@ const PostImageViewPage = (props: any) => {
   const imageRadiusTop = useSharedValue(200);
   const imageRadiusRight = useSharedValue(200);
   const imageRadiusBottom = useSharedValue(200);
+  const imageRadiusToLeft = useSharedValue(20);
 
   // this is a custom animated component
   const CustomTouchable = useMemo(() => {
@@ -61,7 +64,7 @@ const PostImageViewPage = (props: any) => {
   const handleSwipe = useCallback((event: any) => {
     const { translationX } = event.nativeEvent;
 
-    if (translationX > 100 || translationX <= -100) {
+    if (translationX > 100) {
       navigation.goBack();
     }
   }, []);
@@ -73,11 +76,12 @@ const PostImageViewPage = (props: any) => {
 
   useEffect(() => {
     imageSize.value = withTiming(Dimensions.get("window").width, {
-      duration: 3000,
+      duration: 1000,
     });
-    imageRadiusTop.value = withTiming(0, { duration: 2000 });
-    imageRadiusRight.value = withTiming(0, { duration: 2000 });
-    imageRadiusBottom.value = withTiming(0, { duration: 2000 });
+    imageRadiusTop.value = withTiming(0, { duration: 1000 });
+    imageRadiusRight.value = withTiming(0, { duration: 1000 });
+    imageRadiusBottom.value = withTiming(0, { duration: 1000 });
+    imageRadiusToLeft.value = withTiming(0, { duration: 1000 });
   }, []);
 
   const animatedImageStyle = useAnimatedStyle(() => {
@@ -87,10 +91,10 @@ const PostImageViewPage = (props: any) => {
       borderBottomRightRadius: imageRadiusTop.value, // Animate radius
       borderTopRightRadius: imageRadiusRight.value, // Animate radius
       borderBottomLeftRadius: imageRadiusBottom.value, // Animate radius
+      borderTopLeftRadius: imageRadiusToLeft.value, // Animate radius
       transform: [{ scale: 1 }],
     };
   });
-
   return (
     <Animated.View style={[styles.container, { paddingTop: top }, bgOpacity]}>
       <CustomTouchable
@@ -117,23 +121,24 @@ const PostImageViewPage = (props: any) => {
             onGestureEvent={handleGesture}
             onEnded={handleSwipe}
           >
-            <Animated.View style={[styles.animatedImageView, animatedStyle]}>
+            <Animated.View style={[styles.image]}>
               <Animated.Image
                 style={[animatedImageStyle]}
                 source={{ uri: items?.profile }}
-                // sharedTransitionTag={`${items?.id}`}
+                sharedTransitionTag={`${items?.id}`}
                 resizeMode={"cover"}
               />
-              <Text style={{ fontSize: 50, color: "#fff" }}>Rakib</Text>
             </Animated.View>
           </PanGestureHandler>
         </View>
-
         {/* Additional post info (text) */}
         {visibleData && (
-          <View style={styles.textContainer}>
+          <LinearGradient
+            colors={["rgba(0,0,0,.2)", "rgba(156,0,128,.2)"]}
+            style={styles.textContainer}
+          >
             <Text style={styles.aboutText}>{items?.about}</Text>
-          </View>
+          </LinearGradient>
         )}
       </CustomTouchable>
     </Animated.View>
@@ -150,7 +155,6 @@ const styles = StyleSheet.create({
   },
   topBar: {
     height: 50,
-    backgroundColor: "#fff",
     flexDirection: "row",
     paddingHorizontal: 20,
     alignItems: "center",
@@ -163,19 +167,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  animatedImageView: {
-    width: "100%",
-  },
   image: {
     width: "100%",
     height: 350,
   },
   textContainer: {
-    width: "90%",
     alignSelf: "center",
+    position: "absolute",
+    bottom: 20,
   },
   aboutText: {
     color: "#000",
+    flex: 1,
   },
 });
 
