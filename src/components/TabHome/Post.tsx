@@ -11,24 +11,28 @@ import {
 import { Colors } from "../../constants/Colors";
 import Animated from "react-native-reanimated";
 import ReactionModal from "../home/ReactionPopupModal";
+import LikeCommentShareCom from "./LikeCommentShareCom";
 
 const Post = ({ item }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [isLike, setIsLike] = useState(false);
   const [reaction, setReaction] = useState("");
   const navigation: any = useNavigation();
   console.log(item);
 
   const handleOpenModal = useCallback(() => setModalVisible(true), []);
   const handleCloseModal = () => setModalVisible(false);
-  const handleSelectReaction = (selectedReaction) => {
+  const handleSelectReaction = (selectedReaction: any) => {
     setReaction(selectedReaction);
     // Handle the reaction (e.g., update state or send to a server)
   };
 
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => setModalVisible(false)}
+      activeOpacity={1}
       style={{
-        backgroundColor: "#fff",
+        backgroundColor: Colors.white,
         marginBottom: 10,
         // opacity: 0.5,
       }}
@@ -115,68 +119,15 @@ const Post = ({ item }: any) => {
         </View>
       </View>
       <Divider style={{ height: 1, width: "90%", alignSelf: "center" }} />
-      <View
-        style={{
-          height: 40,
-          flexDirection: "row",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <TouchableOpacity
-          onLongPress={() => handleOpenModal()}
-          onPress={() => console.log("clicked")}
-          style={{ flexDirection: "row", alignItems: "center" }}
-        >
-          <AntDesign name="like2" size={24} color={Colors.blue} />
-          <Text
-            style={{
-              marginLeft: 5,
-              color: "#000",
-            }}
-          >
-            Like
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{ flexDirection: "row", alignItems: "center" }}
-        >
-          <FontAwesome5 name="comment" size={24} color={Colors.gray} />
-          <Text
-            style={{
-              marginLeft: 5,
-              color: "#000",
-            }}
-          >
-            Comment
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <FontAwesome name="share" size={24} color={Colors.gray} />
-          <Text
-            style={{
-              marginLeft: 5,
-              color: "#000",
-            }}
-          >
-            Share
-          </Text>
-        </TouchableOpacity>
-        <View style={{ position: "absolute", bottom: 0 }}>
-          <ReactionModal
-            visible={modalVisible}
-            onClose={handleCloseModal}
-            onSelect={handleSelectReaction}
-          />
-        </View>
-      </View>
-    </View>
+      <LikeCommentShareCom
+        handleOpenModal={handleOpenModal}
+        setIsLike={setIsLike}
+        isLike={isLike}
+        modalVisible={modalVisible}
+        handleCloseModal={handleCloseModal}
+        handleSelectReaction={handleSelectReaction}
+      />
+    </TouchableOpacity>
   );
 };
 
