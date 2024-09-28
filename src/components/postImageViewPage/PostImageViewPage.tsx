@@ -123,9 +123,9 @@ const PostImageViewPage = (props: any) => {
           >
             <Animated.View style={[styles.image]}>
               <Animated.Image
-                style={[animatedImageStyle]}
-                source={{ uri: items?.profile }}
                 sharedTransitionTag={`${items?.id}`}
+                style={[styles.image]}
+                source={{ uri: items?.profile }}
                 resizeMode={"cover"}
               />
             </Animated.View>

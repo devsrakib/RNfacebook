@@ -47,7 +47,7 @@ const StoreyItem = () => {
               />
             </TouchableOpacity>
             <Image
-              resizeMode="contain"
+              resizeMode="cover"
               style={StoryStyle.imgContainer}
               source={{ uri: item?.profile }}
             />
