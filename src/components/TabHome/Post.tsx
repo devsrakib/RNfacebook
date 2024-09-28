@@ -82,7 +82,7 @@ const Post = ({ item, isReaction, setIsReaction }: any) => {
           }}
         >
           <Animated.Image
-            sharedTransitionTag={`${item?.id}`}
+            // sharedTransitionTag={`${item?.id}`}
             style={{ width: "100%", height: 300 }}
             source={{ uri: item?.profile }}
           />

@@ -1,5 +1,12 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React, { useCallback, useMemo, useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  ImageBackground,
+} from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -11,15 +18,29 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withSpring,
+  withTiming,
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler";
+import AnimatedText from "../global/AnitedText";
 
 const PostImageViewPage = (props: any) => {
   const items = props?.route?.params; // Assuming 'items' is an array of posts
   const navigation = useNavigation();
   const [visibleData, setVisibleData] = useState(true);
+  const { top } = useSafeAreaInsets();
 
   const translateX = useSharedValue(0);
+  const imageSize = useSharedValue(30);
+  const imageRadiusTop = useSharedValue(200);
+  const imageRadiusRight = useSharedValue(200);
+  const imageRadiusBottom = useSharedValue(200);
+
+  // this is a custom animated component
+  const CustomTouchable = useMemo(() => {
+    return Animated.createAnimatedComponent(TouchableOpacity);
+  }, []);
+  const CustomImageBackground =
+    Animated.createAnimatedComponent(ImageBackground);
 
   // Animated style for smooth transitions
   const animatedStyle = useAnimatedStyle(() => ({
@@ -50,11 +71,25 @@ const PostImageViewPage = (props: any) => {
     translateX.value = translationX; // Update translateX value
   }, []);
 
-  const CustomTouchable = useMemo(() => {
-    return Animated.createAnimatedComponent(TouchableOpacity);
+  useEffect(() => {
+    imageSize.value = withTiming(Dimensions.get("window").width, {
+      duration: 3000,
+    });
+    imageRadiusTop.value = withTiming(0, { duration: 2000 });
+    imageRadiusRight.value = withTiming(0, { duration: 2000 });
+    imageRadiusBottom.value = withTiming(0, { duration: 2000 });
   }, []);
 
-  const { top } = useSafeAreaInsets();
+  const animatedImageStyle = useAnimatedStyle(() => {
+    return {
+      width: imageSize.value, // Animate width
+      height: imageSize.value, // Animate height
+      borderBottomRightRadius: imageRadiusTop.value, // Animate radius
+      borderTopRightRadius: imageRadiusRight.value, // Animate radius
+      borderBottomLeftRadius: imageRadiusBottom.value, // Animate radius
+      transform: [{ scale: 1 }],
+    };
+  });
 
   return (
     <Animated.View style={[styles.container, { paddingTop: top }, bgOpacity]}>
@@ -84,11 +119,12 @@ const PostImageViewPage = (props: any) => {
           >
             <Animated.View style={[styles.animatedImageView, animatedStyle]}>
               <Animated.Image
-                style={styles.image}
+                style={[animatedImageStyle]}
                 source={{ uri: items?.profile }}
-                sharedTransitionTag={`${items?.id}`}
+                // sharedTransitionTag={`${items?.id}`}
                 resizeMode={"cover"}
               />
+              <Text style={{ fontSize: 50, color: "#fff" }}>Rakib</Text>
             </Animated.View>
           </PanGestureHandler>
         </View>
@@ -140,8 +176,6 @@ const styles = StyleSheet.create({
   },
   aboutText: {
     color: "#000",
-    position: "absolute",
-    bottom: 20,
   },
 });
 
